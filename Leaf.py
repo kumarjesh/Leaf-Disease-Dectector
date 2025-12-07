@@ -12,7 +12,7 @@ load_dotenv()
 # The GOOGLE_API_KEY is retrieved from the environment variables loaded above.
 # NOTE: This API key is required to use the Google Generative AI service.
 headers = {
-    "authorization": st.secrets["AUTH key"],
+    "authorization": st.secrets["auth_key"],
     "content-type": "application/json"
 }
 
@@ -128,5 +128,6 @@ if submit:
             # Provide a general error message if the API call or processing fails
 
             st.error(f"An unexpected error occurred during analysis: {e}")
+
 
 
