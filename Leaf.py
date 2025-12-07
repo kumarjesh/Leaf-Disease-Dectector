@@ -11,11 +11,10 @@ load_dotenv()
 # Configure the Gemini API client
 # The GOOGLE_API_KEY is retrieved from the environment variables loaded above.
 # NOTE: This API key is required to use the Google Generative AI service.
-try:
-    genai.configure(api_key=os.getenv("GOOGLE_API_KEY"))
-except Exception as e:
-    # Handle case where API key might not be set in the environment
-    st.error(f"Error configuring Gemini API: {e}. Please ensure GOOGLE_API_KEY is set correctly.")
+headers = {
+    "authorization": st.secrets["auth_token"],
+    "content-type": "application/json"
+}
 
 def get_gemini_response(input_prompt, image_parts):
     """
@@ -127,4 +126,5 @@ if submit:
 
         except Exception as e:
             # Provide a general error message if the API call or processing fails
+
             st.error(f"An unexpected error occurred during analysis: {e}")
